@@ -1,16 +1,13 @@
 all: stack
 
-stack: main.o stack.o test.o
-	gcc main.o stack.o test.o -o stack
+stack: test.o stack.o 
+	gcc test.o stack.o -o stack
 
-main.o: main.c
-	gcc -c main.c
+test.o: test.c
+	gcc -c test.c
 
 stack.o: stack.c
 	gcc -c stack.c
-
-test.o: test.c
-	gcc -c  test.c
 
 clean:
 	rm -rf *.o stack

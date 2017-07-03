@@ -8,89 +8,74 @@
 #include <malloc.h>
 #include <stdlib.h>
 
-/*
- * description of structure "my_stack"
-*/
 typedef struct my_stack
 {
-	int* data; /* the pointer to stack data */
-	int size; /* how many elements consist the stack */
-	int top; /* the position of current element */
+	int* data; 
+	int size;
+	int top;
 } my_stack;
 
-/*
- * function which create stack, returns the pointer to the stack, which was created
-*/
-my_stack* create_stack() 
+int create_stack(my_stack* new_stack) 
 {
-	my_stack* new_stack = NULL; /* new stack pointer is equal to NULL */
-	new_stack = malloc(sizeof(my_stack)); /* allocating memory for the new stack */
+	new_stack = malloc(sizeof(my_stack));
 	if (new_stack == NULL) 
-		return NULL;
-		//exit(OUT_OF_MEMORY);
-	new_stack->size = INIT_SIZE; /* the size of new stack is equal to constant INIT_SIZE */
-	new_stack->data = malloc(new_stack->size * sizeof(int)); /* allocating memory to the stack field "data" */
+		return(OUT_OF_MEMORY);
+	new_stack->size = INIT_SIZE;
+	new_stack->data = malloc(new_stack->size * sizeof(int)); 
 	if (new_stack->data == NULL) 
 	{
 		free(new_stack);
-		return NULL;
-		//exit(OUT_OF_MEMORY);
+		return(OUT_OF_MEMORY);
 	}
 	new_stack->top = 0; 
-	return new_stack;
+	return 0;
 }
 
-/*
- * function which delete the stack, takes pointer to pointer to stack 
-*/ 
-void delete_stack(my_stack* stack) 
+int delete_stack(my_stack* stack) 
 {
 	free(stack->data);
 	free(stack);
 	stack = NULL;
+	return 0;
 }
 
-/*
- * function which resize the stack, takes pointer to stack 
-*/ 
-void resize(my_stack* stack)
+int resize(my_stack* stack)
 {
+	void* t;
+
 	stack->size += ADD_SPACE;
-	stack->data = realloc(stack->data, stack->size * sizeof(int));
-	if (stack->data == NULL) 
-		exit(STACK_OVERFLOW);
+	t = realloc(stack->data, stack->size * sizeof(int));
+	if (t == NULL) 
+		return(STACK_OVERFLOW);
+	else
+		stack->data = t;
+	return 0;
 }
 
-/*
- * put the element "value" on top of the stack, takes pointer to stack and "value"
-*/
-void push(my_stack* stack, int value) 
+int push(my_stack* stack, int value) 
 {
 	if (stack->top >= stack->size) /* checks is it necessary to resize a stack */
 		resize(stack);	       	
 	stack->data[stack->top] = value;
 	stack->top++;
+	return 0;
 }
 
-/*
- * pops element from the top of the stack and returns it
-*/
-int pop(my_stack* stack) 
-{
-	if (stack->top == 0) 
-		exit(STACK_UNDERFLOW);
-	stack->top--;
-	return stack->data[stack->top];
-}
-
-/*
- * return element from the top of the stack
-*/
-int peek(const my_stack* stack) 
+int pop(my_stack* stack, int* value) 
 {
 	if (stack->top <= 0) 
-		exit(STACK_UNDERFLOW);
-	return stack->data[stack->top - 1];
+		return(STACK_UNDERFLOW);
+	stack->top--;
+	*value = stack->data[stack->top];
+	return 0;
+}
+
+int peek(const my_stack* stack, int* value) 
+{
+	if (stack->top <= 0) 
+		return(STACK_UNDERFLOW);
+	*value = stack->data[stack->top - 1];
+	return 0;
 }
 
 
