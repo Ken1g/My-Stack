@@ -9,8 +9,8 @@
 typedef struct my_stack
 {
 	int* data; /* the pointer to stack data */
-	size_t size; /* how many elements consist the stack */
-	size_t top; /* the position of current element */
+	int size; /* how many elements consist the stack */
+	int top; /* the position of current element */
 } my_stack;
 
 /*
@@ -21,7 +21,7 @@ my_stack* create_stack();
 /*
  * function which delete the stack, takes pointer to pointer to stack 
 */ 
-void delete_stack(my_stack** stack);
+void delete_stack(my_stack* stack);
 
 /*
  * function which resize the stack, takes pointer to stack 

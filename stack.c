@@ -14,8 +14,8 @@
 typedef struct my_stack
 {
 	int* data; /* the pointer to stack data */
-	size_t size; /* how many elements consist the stack */
-	size_t top; /* the position of current element */
+	int size; /* how many elements consist the stack */
+	int top; /* the position of current element */
 } my_stack;
 
 /*
@@ -26,13 +26,15 @@ my_stack* create_stack()
 	my_stack* new_stack = NULL; /* new stack pointer is equal to NULL */
 	new_stack = malloc(sizeof(my_stack)); /* allocating memory for the new stack */
 	if (new_stack == NULL) 
-		exit(OUT_OF_MEMORY);
+		return NULL;
+		//exit(OUT_OF_MEMORY);
 	new_stack->size = INIT_SIZE; /* the size of new stack is equal to constant INIT_SIZE */
 	new_stack->data = malloc(new_stack->size * sizeof(int)); /* allocating memory to the stack field "data" */
 	if (new_stack->data == NULL) 
 	{
 		free(new_stack);
-		exit(OUT_OF_MEMORY);
+		return NULL;
+		//exit(OUT_OF_MEMORY);
 	}
 	new_stack->top = 0; 
 	return new_stack;
@@ -41,11 +43,11 @@ my_stack* create_stack()
 /*
  * function which delete the stack, takes pointer to pointer to stack 
 */ 
-void delete_stack(my_stack** stack) 
+void delete_stack(my_stack* stack) 
 {
-	free((*stack)->data);
-	free(*stack);
-	*stack = NULL;
+	free(stack->data);
+	free(stack);
+	stack = NULL;
 }
 
 /*
