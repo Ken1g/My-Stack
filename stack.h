@@ -18,12 +18,12 @@ typedef struct my_stack
 /*
  * function which create stack, put the pointer to the new stack into "new_stack"
 */
-int create_stack(my_stack* new_stack); 
+int create_stack(my_stack** new_stack); 
 
 /*
  * function which delete the stack, takes pointer to pointer to stack 
 */ 
-int delete_stack(my_stack* stack);
+int delete_stack(my_stack** stack);
 
 /*
  * function which resize the stack, takes pointer to stack 

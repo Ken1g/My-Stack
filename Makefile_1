@@ -1,10 +1,10 @@
 all: stack
 
-stack: test.o stack.o 
-	gcc test.o stack.o -o stack
+stack: test_1.o stack.o 
+	gcc test_1.o stack.o -o stack
 
 test.o: test.c
-	gcc -c test.c
+	gcc -c test_1.c
 
 stack.o: stack.c
 	gcc -c stack.c

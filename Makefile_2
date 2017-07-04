@@ -1,0 +1,13 @@
+all: stack
+
+stack: test_2.o stack.o 
+	gcc test_2.o stack.o -o stack
+
+test.o: test.c
+	gcc -c test_2.c
+
+stack.o: stack.c
+	gcc -c stack.c
+
+clean:
+	rm -rf *.o stack

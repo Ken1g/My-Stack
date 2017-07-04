@@ -1,7 +1,7 @@
 #define STACK_OVERFLOW  -100
 #define STACK_UNDERFLOW -101
 #define OUT_OF_MEMORY   -102
-#define INIT_SIZE 10 /* starting stack size */
+#define INIT_SIZE 2 /* starting stack size */
 #define ADD_SPACE 1 /* shows by how many elements the stack is increasing after resize function */
 
 #include <stdio.h>
@@ -15,27 +15,27 @@ typedef struct my_stack
 	int top;
 } my_stack;
 
-int create_stack(my_stack* new_stack) 
+int create_stack(my_stack** new_stack) 
 {
-	new_stack = malloc(sizeof(my_stack));
-	if (new_stack == NULL) 
+	*new_stack = malloc(sizeof(my_stack));
+	if (*new_stack == NULL) 
 		return(OUT_OF_MEMORY);
-	new_stack->size = INIT_SIZE;
-	new_stack->data = malloc(new_stack->size * sizeof(int)); 
-	if (new_stack->data == NULL) 
+	(*new_stack)->size = INIT_SIZE;
+	(*new_stack)->data = malloc((*new_stack)->size * sizeof(int)); 
+	if ((*new_stack)->data == NULL) 
 	{
-		free(new_stack);
+		free(*new_stack);
 		return(OUT_OF_MEMORY);
 	}
-	new_stack->top = 0; 
+	(*new_stack)->top = 0; 
 	return 0;
 }
 
-int delete_stack(my_stack* stack) 
+int delete_stack(my_stack** stack) 
 {
-	free(stack->data);
-	free(stack);
-	stack = NULL;
+	free((*stack)->data);
+	free(*stack);
+	*stack = NULL;
 	return 0;
 }
 
