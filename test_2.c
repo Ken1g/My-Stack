@@ -1,3 +1,7 @@
+/*
+* Resize test
+*/
+
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
@@ -17,6 +21,7 @@ int main()
 		val = resize(st);
 		printf("size of stack %d, changed with code %d\n", st->size, val);
 	}
+	delete_stack(&st);
 
 	return 0;       
 }

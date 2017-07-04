@@ -1,3 +1,7 @@
+/*
+* Peek, pop and push test
+*/
+
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
@@ -22,6 +26,7 @@ int main()
 		ans = pop(st, &val);
 		printf("value %d poped from the top with code %d\n", val, ans);
         }
+	delete_stack(&st);
 
 	return 0;
 }
