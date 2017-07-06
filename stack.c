@@ -7,13 +7,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
-
-typedef struct my_stack
-{
-	int* data; 
-	int size;
-	int top;
-} my_stack;
+#include "stack.h"
 
 int create_stack(my_stack** new_stack) 
 {
@@ -54,8 +48,12 @@ int resize(my_stack* stack)
 
 int push(my_stack* stack, int value) 
 {
+	int code = 0;
+	
 	if (stack->top >= stack->size) /* checks is it necessary to resize a stack */
-		resize(stack);	       	
+		code = resize(stack);	       	
+	if (code != 0)	      	
+		return(code); /* if function "resize" failed,  return the error code */
 	stack->data[stack->top] = value;
 	stack->top++;
 	return 0;

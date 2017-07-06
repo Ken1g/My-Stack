@@ -8,9 +8,9 @@
 */
 typedef struct my_stack
 {
-	int* data; /* the pointer to stack data */
-	int size; /* how many elements consist the stack */
-	int top; /* the position of current element */
+        int* data; /* the pointer to stack data */
+        int size; /* how many elements consist the stack */
+        int top; /* the position of current element */
 } my_stack;
 
 /* if success all functions return 0 or functions return error code */
