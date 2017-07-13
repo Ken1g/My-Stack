@@ -3,14 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef double data_type; /* data type */
+
 /*
  * description of structure "my_stack"
 */
 typedef struct my_stack
 {
-        int* data; /* the pointer to stack data */
-        int size; /* how many elements consist the stack */
-        int top; /* the position of current element */
+        void* data; /* the pointer to stack data */
+	int top; /* the position of current element */
+	int size; /* how many elements consist the stack */
 } my_stack;
 
 /* if success all functions return 0 or functions return error code */
@@ -33,15 +35,15 @@ int resize(my_stack* stack);
 /*
  * put the element "value" on top of the stack, takes pointer to stack and "value"
 */
-int push(my_stack* stack, int value); 
+int push(my_stack* stack, data_type* value); 
 
 /*
  * pops element from the top of the stack and returns it
 */
-int pop(my_stack* stack, int* value);
+int pop(my_stack* stack, data_type* value);
 
 /*
  * return element from the top of the stack
 */
-int peek(const my_stack* stack, int* value); 
+int peek(const my_stack* stack, data_type* value); 
 #endif
