@@ -20,19 +20,19 @@ int main()
 	{
 		val += 1;
 		ans = push(st, &val);
-		printf("value %f pushed with code %f  |  ", val, ans);
+		printf("value %f pushed with code %d  |  ", val, ans);
 		printf("IF SUCCESS: value %f pushed with code 0\n", val);
 		test += ans;
 	}
 	for (i = 0; i < 5; i++)
         {
                 ans = peek(st, &val);
-                printf("value on the top is %f, code %f  |  ", val, ans);
-		printf("IF SUCCESS: value on the top is %f, code 0\n", 5 - i);
+                printf("value on the top is %f, code %d  |  ", val, ans);
+		printf("IF SUCCESS: value on the top is %d, code 0\n", 5 - i);
 		test += abs(val - 5 + i) + ans;
 		ans = pop(st, &val);
-		printf("value %f poped from the top with code %f  |  ", val, ans);
-		printf("IF SUCCESS: value %f poped from the top with code 0\n", 4 - i);
+		printf("value %f poped from the top with code %d  |  ", val, ans);
+		printf("IF SUCCESS: value %d poped from the top with code 0\n", 4 - i);
 		test += abs(val - 5 + i) + ans;
 	}
 	delete_stack(&st);
@@ -43,7 +43,3 @@ int main()
 
 	return 0;
 }
-
-
-
-
